@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+class Area {
+public:
+    // Function to find area of circle
+    float findArea(float radius) {
+        return 3.14159f * radius * radius;
+    }
+
+    
+    int findArea(int side) {
+        return side * side;
+    }
+
+    
+    float findArea(float length, float breadth) {
+        return length * breadth;
+    }
+
+    
+    float findArea(double base, double height) {
+        return 0.5 * base * height;
+    }
+};
+
+int main() {
+    Area a;
+
+    float radius, length, breadth;
+    int side;
+    double base, height;
+
+    cout << "Enter radius of circle: ";
+    cin >> radius;
+    cout << "Area of Circle = " << a.findArea(radius) << endl;
+
+    cout << "\nEnter side of square: ";
+    cin >> side;
+    cout << "Area of Square = " << a.findArea(side) << endl;
+
+    cout << "\nEnter length and breadth of rectangle: ";
+    cin >> length >> breadth;
+    cout << "Area of Rectangle = " << a.findArea(length, breadth) << endl;
+
+    cout << "\nEnter base and height of triangle: ";
+    cin >> base >> height;
+    cout << "Area of Triangle = " << a.findArea(base, height) << endl;
+
+    return 0;
+}

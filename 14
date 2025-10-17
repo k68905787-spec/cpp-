@@ -1,0 +1,83 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student {
+protected:
+    string Name;
+    int RollNo;
+    string Course;
+public:
+    void inputStudent() {
+        cout << "Enter Name: ";
+        cin.ignore();
+        getline(cin, Name);
+        cout << "Enter Roll No: ";
+        cin >> RollNo;
+        cin.ignore();
+        cout << "Enter Course: ";
+        getline(cin, Course);
+    }
+
+    void displayStudent() {
+        cout << "\nName: " << Name
+             << "\nRoll No: " << RollNo
+             << "\nCourse: " << Course << endl;
+    }
+};
+
+
+class Test : virtual public Student {
+protected:
+    int marks[3];
+public:
+    void inputTest() {
+        cout << "Enter marks for 3 subjects: ";
+        for (int i = 0; i < 3; i++)
+            cin >> marks[i];
+    }
+};
+
+
+class GraceMarks : virtual public Student {
+protected:
+    int BonusMark;
+public:
+    void inputGrace() {
+        cout << "Enter Bonus Mark: ";
+        cin >> BonusMark;
+    }
+};
+
+
+class Result : public Test, public GraceMarks {
+public:
+    void displayResult() {
+        displayStudent();
+
+        int total = 0;
+        for (int i = 0; i < 3; i++)
+            total += marks[i];
+        total += BonusMark;
+
+        cout << "Marks in 3 subjects: ";
+        for (int i = 0; i < 3; i++)
+            cout << marks[i] << " ";
+        cout << "\nBonus Mark: " << BonusMark
+             << "\nTotal Marks: " << total << endl;
+    }
+};
+
+int main() {
+    Result r;
+
+    cout << "--- Enter Student Details ---\n";
+    r.inputStudent();
+    r.inputTest();
+    r.inputGrace();
+
+    cout << "\n--- Student Result ---\n";
+    r.displayResult();
+
+    return 0;
+}

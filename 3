@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+class Rectangle {
+private:
+    float length;
+    float width;
+
+public:
+    // Default constructor
+    Rectangle() {
+        length = 0;
+        width = 0;
+        cout << "Default constructor called.\n";
+    }
+
+    // Parameterized constructor
+    Rectangle(float l, float w) {
+        length = l;
+        width = w;
+        cout << "Parameterized constructor called.\n";
+    }
+
+    // Member function to display values
+    void display() {
+        cout << "Length = " << length << ", Width = " << width << endl;
+    }
+
+    // Destructor
+    ~Rectangle() {
+        cout << "Destructor called. Object destroyed.\n";
+    }
+};
+
+int main() {
+    // Object using default constructor
+    Rectangle r1;
+    cout << "\nRectangle 1 details:\n";
+    r1.display();
+
+    // Object using parameterized constructor
+    Rectangle r2(10.5, 6.8);
+    cout << "\nRectangle 2 details:\n";
+    r2.display();
+
+    cout << "\nEnd of program.\n";
+    return 0;
+}

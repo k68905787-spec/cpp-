@@ -1,0 +1,45 @@
+class Counter {
+private:
+    int count;
+
+public:
+    
+    Counter(int c = 0) {
+        count = c;
+    }
+
+    
+    void display() {
+        cout << "Count = " << count << endl;
+    }
+
+    
+    Counter operator++() {
+        ++count;  // Increment count
+        return *this;
+    }
+
+    
+    Counter operator++(int) {
+        Counter temp = *this;
+        count++;
+        return temp;
+    }
+};
+
+int main() {
+    Counter c1(5);
+
+    cout << "Initial Value: ";
+    c1.display();
+
+    cout << "\nUsing Prefix ++:\n";
+    ++c1;          // Calls prefix
+    c1.display();
+
+    cout << "\nUsing Postfix ++:\n";
+    c1++;          // Calls postfix
+    c1.display();
+
+    return 0;
+}

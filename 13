@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+
+class Polygon {
+public:
+    virtual float area() { return 0; } 
+};
+
+
+class Rectangle : public Polygon {
+    float length, width;
+public:
+    void input() {
+        cout << "Enter length and width of rectangle: ";
+        cin >> length >> width;
+    }
+    float area() override {
+        return length * width;
+    }
+};
+
+class Triangle : public Polygon {
+    float base, height;
+public:
+    void input() {
+        cout << "Enter base and height of triangle: ";
+        cin >> base >> height;
+    }
+    float area() override {
+        return 0.5 * base * height;
+    }
+};
+
+int main() {
+    Polygon* p;
+    Rectangle r;
+    Triangle t;
+
+    r.input();
+    p = &r;
+    cout << "Area of Rectangle = " << p->area() << endl;
+
+    t.input();
+    p = &t;
+    cout << "Area of Triangle = " << p->area() << endl;
+
+    return 0;
+}

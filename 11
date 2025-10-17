@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+
+class BankAccount {
+protected:
+    int accNo;
+    float balance;
+public:
+    void inputAccount() {
+        cout << "Account No: "; cin >> accNo;
+        cout << "Balance: "; cin >> balance;
+    }
+    void deposit(float amt) { balance += amt; }
+    void withdraw(float amt) { balance = (amt <= balance) ? balance - amt : balance; }
+};
+class SavingsAccount : public BankAccount {
+    float rate;
+public:
+    void setRate(float r) { rate = r; }
+    void display() {
+        cout << "\nSavings Account\nAcc No: " << accNo << "\nBalance: " << balance;
+        cout << "\nInterest: " << balance * rate / 100 << endl;
+    }
+};
+
+
+class CurrentAccount : public BankAccount {
+    float minBalance;
+public:
+    void setMin(float m) { minBalance = m; }
+    void display() {
+        cout << "\nCurrent Account\nAcc No: " << accNo << "\nBalance: " << balance;
+        if (balance < minBalance) {
+            float charge = 0.05 * balance;
+            balance -= charge;
+            cout << "\nService Charge Applied: " << charge;
+        }
+        cout << "\nUpdated Balance: " << balance << endl;
+    }
+};
+
+int main() {
+    SavingsAccount s;
+    s.inputAccount();
+    s.setRate(5);
+    s.deposit(2000); s.withdraw(500);
+    s.display();
+
+    CurrentAccount c;
+    c.inputAccount();
+    c.setMin(5000);
+    c.deposit(3000); c.withdraw(7000);
+    c.display();
+
+    return 0;
+}

@@ -1,0 +1,75 @@
+#include <iostream>
+using namespace std;
+
+class Matrix {
+private:
+    int rows;
+    int cols;
+    int mat[10][10];  
+
+public:
+    
+    Matrix(int r = 2, int c = 2) {
+        rows = r;
+        cols = c;
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < cols; j++)
+                mat[i][j] = 0;
+    }
+
+    
+    void input() {
+        cout << "Enter elements of " << rows << "x" << cols << " matrix:\n";
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < cols; j++) {
+                cin >> mat[i][j];
+            }
+    }
+
+    
+    void display() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++)
+                cout << mat[i][j] << " ";
+            cout << endl;
+        }
+    }
+
+    
+    Matrix operator+(Matrix m) {
+        Matrix temp(rows, cols);
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < cols; j++)
+                temp.mat[i][j] = mat[i][j] + m.mat[i][j];
+        return temp;
+    }
+};
+
+int main() {
+    int r, c;
+
+    cout << "Enter number of rows and columns: ";
+    cin >> r >> c;
+
+    Matrix m1(r, c), m2(r, c), sum(r, c);
+
+    cout << "\nEnter elements for Matrix 1:\n";
+    m1.input();
+
+    cout << "\nEnter elements for Matrix 2:\n";
+    m2.input();
+
+    sum = m1 + m2;  // Using overloaded + operator
+
+    cout << "\nMatrix 1:\n";
+    m1.display();
+
+    cout << "\nMatrix 2:\n";
+    m2.display();
+
+    cout << "\nSum of Matrices:\n";
+    sum.display();
+
+    return 0;
+}
+

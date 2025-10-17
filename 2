@@ -1,0 +1,67 @@
+#include <iostream>
+#include <string>
+using namespace std;  // ✅ correctly written
+
+class Book {
+private:
+    int BookID;
+    string BookName;
+    float BookPrice;
+
+    float total_cost(int n) {  // private helper function
+        return BookPrice * n;
+    }
+
+public:
+    void inputDetails() {
+        cout << "Enter Book ID: ";
+        cin >> BookID;
+        cin.ignore();  // to clear input buffer
+
+        cout << "Enter Book Name: ";
+        getline(cin, BookName);
+
+        cout << "Enter Book Price: ";
+        cin >> BookPrice;
+    }
+
+    void displayDetails() {
+        cout << "\nBook ID: " << BookID;
+        cout << "\nBook Name: " << BookName;
+        cout << "\nBook Price: " << BookPrice << endl;
+    }
+
+    void purchase() {
+        int copies;
+        cout << "Enter number of copies to purchase: ";
+        cin >> copies;
+        float cost = total_cost(copies);
+        cout << "Total cost for " << copies << " copies = Rs. " << cost << endl;
+    }
+};
+
+int main() {
+    Book b1, b2, b3;
+
+    cout << "Enter details of Book 1:\n";
+    b1.inputDetails();
+    cout << "\nEnter details of Book 2:\n";
+    b2.inputDetails();
+    cout << "\nEnter details of Book 3:\n";
+    b3.inputDetails();
+
+    cout << "\n--- Book Details and Purchase ---\n";
+    cout << "\nBook 1:";
+    b1.displayDetails();
+    b1.purchase();
+
+    cout << "\nBook 2:";
+    b2.displayDetails();
+    b2.purchase();
+
+    cout << "\nBook 3:";
+    b3.displayDetails();
+    b3.purchase();
+
+    return 0;
+}
